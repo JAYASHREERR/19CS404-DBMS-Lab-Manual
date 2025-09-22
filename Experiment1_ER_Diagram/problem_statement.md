@@ -1,143 +1,62 @@
-# ER Diagram Workshop – Submission Template
+## ER Diagram Workshop – Submission Template
 
 ## Objective
+
 To understand and apply ER modeling concepts by creating ER diagrams for real-world applications.
 
 ## Purpose
+
 Gain hands-on experience in designing ER diagrams that represent database structure including entities, relationships, attributes, and constraints.
 
----
+## Scenario A: City Fitness Club Management
 
-# Scenario A: City Fitness Club Management
-
-**Business Context:**  
+## Business Context:
 FlexiFit Gym wants a database to manage its members, trainers, and fitness programs.
 
-**Requirements:**  
-- Members register with name, membership type, and start date.  
-- Each member can join multiple programs (Yoga, Zumba, Weight Training).  
-- Trainers assigned to programs; a program may have multiple trainers.  
-- Members may book personal training sessions with trainers.  
-- Attendance recorded for each session.  
-- Payments tracked for memberships and sessions.
+## Requirements:
 
-### ER Diagram:
-*Paste or attach your diagram here*  
-![ER Diagram](er_diagram_fitness.png)
+Members register with name, membership type, and start date.
 
-### Entities and Attributes
+Each member can join multiple programs (Yoga, Zumba, Weight Training).
 
-| Entity | Attributes (PK, FK) | Notes |
-|--------|--------------------|-------|
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
+Trainers assigned to programs; a program may have multiple trainers.
 
-### Relationships and Constraints
+Members may book personal training sessions with trainers.
 
-| Relationship | Cardinality | Participation | Notes |
-|--------------|------------|---------------|-------|
-|              |            |               |       |
-|              |            |               |       |
-|              |            |               |       |
+Attendance recorded for each session.
 
-### Assumptions
-- 
-- 
-- 
+Payments tracked for memberships and sessions.
 
----
+ER Diagram:
 
-# Scenario B: City Library Event & Book Lending System
+<img width="721" height="705" alt="image" src="https://github.com/user-attachments/assets/31c8e275-f0f6-4561-a5b9-10386e3638cf" />
 
-**Business Context:**  
-The Central Library wants to manage book lending and cultural events.
 
-**Requirements:**  
-- Members borrow books, with loan and return dates tracked.  
-- Each book has title, author, and category.  
-- Library organizes events; members can register.  
-- Each event has one or more speakers/authors.  
-- Rooms are booked for events and study.  
-- Overdue fines apply for late returns.
+## Entities and Attributes
 
-### ER Diagram:
-*Paste or attach your diagram here*  
-![ER Diagram](er_diagram_library.png)
+Entity	Attributes (PK, FK)	Notes
+Member	MemberID (PK), Name, MembershipType, StartDate	Stores details of gym members
+Program	ProgramID (PK), ProgramName, Description	Different fitness programs offered
+Trainer	TrainerID (PK), Name, Specialization	Trainers assigned to programs/sessions
+Session	SessionID (PK), MemberID (FK), TrainerID (FK), Date, Time	Personal training sessions booked
+Attendance	AttendanceID (PK), SessionID (FK), Status (Present/Absent)	Tracks member’s attendance per session
+Payment	PaymentID (PK), MemberID (FK), Amount, PaymentDate, PaymentType	Records membership/session payments
+Relationships and Constraints
+Relationship	Cardinality	Participation	Notes
+Member – Program (joins)	M:N	Optional	A member can join many programs; each program has many members
+Program – Trainer (assigned to)	M:N	Mandatory	A program may have multiple trainers, and a trainer can teach multiple programs
+Member – Trainer (books session)	M:N (via Session)	Optional	Members book personal sessions with trainers
+Session – Attendance (recorded for)	1:M	Mandatory	Each session must have attendance records
+Member – Payment (makes)	1:M	Mandatory	Each payment belongs to one member; a member may have many payments
 
-### Entities and Attributes
+## Assumptions
 
-| Entity | Attributes (PK, FK) | Notes |
-|--------|--------------------|-------|
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
+Each member has only one active membership at a time.
 
-### Relationships and Constraints
+A session is always linked to one trainer and one member.
 
-| Relationship | Cardinality | Participation | Notes |
-|--------------|------------|---------------|-------|
-|              |            |               |       |
-|              |            |               |       |
-|              |            |               |       |
+Payments can be made for both membership fees and personal sessions.
 
-### Assumptions
-- 
-- 
-- 
+Attendance is tracked only for scheduled sessions, not for casual gym visits.
 
----
-
-# Scenario C: Restaurant Table Reservation & Ordering
-
-**Business Context:**  
-A popular restaurant wants to manage reservations, orders, and billing.
-
-**Requirements:**  
-- Customers can reserve tables or walk in.  
-- Each reservation includes date, time, and number of guests.  
-- Customers place food orders linked to reservations.  
-- Each order contains multiple dishes; dishes belong to categories (starter, main, dessert).  
-- Bills generated per reservation, including food and service charges.  
-- Waiters assigned to serve reservations.
-
-### ER Diagram:
-*Paste or attach your diagram here*  
-![ER Diagram](er_diagram_restaurant.png)
-
-### Entities and Attributes
-
-| Entity | Attributes (PK, FK) | Notes |
-|--------|--------------------|-------|
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-
-### Relationships and Constraints
-
-| Relationship | Cardinality | Participation | Notes |
-|--------------|------------|---------------|-------|
-|              |            |               |       |
-|              |            |               |       |
-|              |            |               |       |
-
-### Assumptions
-- 
-- 
-- 
-
----
-
-## Instructions for Students
-
-1. Complete **all three scenarios** (A, B, C).  
-2. Identify entities, relationships, and attributes for each.  
-3. Draw ER diagrams using **draw.io / diagrams.net** or hand-drawn & scanned.  
-4. Fill in all tables and assumptions for each scenario.  
-5. Export the completed Markdown (with diagrams) as **a single PDF**
+Trainers can handle multiple programs but must have at least one specialization.
